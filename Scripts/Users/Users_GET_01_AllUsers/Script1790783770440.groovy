@@ -18,5 +18,11 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WS.sendRequest(findTestObject('GET users'))
+response = WS.sendRequest(findTestObject('GET users'))
+
+// 1. Verify status code
+WS.verifyResponseStatusCode(response, 200)
+
+// 2. Verify all users are returned
+WS.verifyElementsCount(response, 'users', 10)
 
